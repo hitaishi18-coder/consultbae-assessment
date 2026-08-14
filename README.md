@@ -26,6 +26,15 @@ This project is divided into core components:
 * **Backend:** Node.js, Express, Multer, Fluent-FFmpeg, n8n Webhooks
 * **Frontend:** React (Vite)
 
+## Data Issues Report (Task 4)
+* **Missing Universal Primary Keys:** The multiple CSV datasets lacked a single common identifier across files (Source 2 lacked phone fields, and Source 3 lacked emails). *Resolution:* Used Source 1 as a bridge table to perform multi-step outer joins.
+* **Inconsistent Phone Formats:** Phone numbers contained mixed country codes, spaces, and special symbols. *Resolution:* Applied rigorous RegEx cleaning to extract exact 10-digit formats.
+* **Messy Metadata & Encoding Errors:** Inconsistent spacing and missing attributes across files were standardized during the pandas preprocessing phase.
+
+## Stuck Log (Task 3 / Assignment Hurdles)
+1. **Webhook Data Loading in n8n:** Initially, the Google Sheets node returned "No input data" because a live test payload wasn't captured inside the execution memory. *Fix:* Used the "Listen for test event" function on the Webhook node, triggered a fresh test payload from the client frontend, and successfully stored the incoming JSON body.
+2. **Column Mapping Mode:** Automatic mapping failed due to case sensitivity mismatch between incoming keys and sheet columns. *Fix:* Switched to "Map Each Column Manually" to explicitly link `phone`, `duration`, `sampleRate`, and `bitrate` parameters to the respective Google Sheets column headers.
+
 ## How to Run Locally
 
 ### 1. Initialize the Database
