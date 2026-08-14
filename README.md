@@ -42,3 +42,5 @@ Ensure your raw CSV files are in a `data/` folder in the root directory.
 ```bash
 # This cleans the data and generates 'consultbae_candidates.db'
 python merge_data.py
+
+
